@@ -13,7 +13,7 @@
     $sql = "use usuario";
     //Ejecutamos el codigo
     if(mysqli_query($conn,$sql)) {
-        echo "Se selecciono la base de datos";
+        //echo "Se selecciono la base de datos";
     }
     else{
         echo "Error al seleccionar la BD" .mysqli_error($conn);

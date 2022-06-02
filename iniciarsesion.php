@@ -17,8 +17,15 @@ if ($result->num_rows > 0) {
             
 		}
     }
-    $_SESSION['error']= "Hubo un error, no se encontraron los datos registrados.";
-    mysqli_close($conn);
+    if(isset($_SESSION['usuario'])){
+        unset($_SESSION['error']);
+        
+        }
+    else{
+        $_SESSION['error']= "Hubo un error, no se encontraron los datos registrados.";
+        mysqli_close($conn);
+    }
+    
     header("Location: index.php");
 } else {
     $_SESSION['error']= "No hay información en la BD.";

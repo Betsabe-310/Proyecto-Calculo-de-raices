@@ -67,14 +67,46 @@
 
     <!--EMPIEZA TEXTO METODOS -->
     <div class="espacio_lados">
-    <h1 class="titulo_metodo">BIENVENIDO</h1>
-    <p>Aquí podrás encontrar las raíces de tus funciones, utilizando los métodos de Bisección, Newton Raphson, Falsa posición y Secante.</p>
-    <p>Estos métodos están programados en Python, con la ayuda de una librería llamada SymPy, esta librería se desarrollo para matemáticas simbólicas, lo que nos da una gran facilidad para resolver derivadas, integrales, factorización, límites, series de Taylor, solución de ecuaciones entre muchos otros temas que se pueden ver en la página principal.</p>
-    <p>Debido al lenguaje nosotros tenemos que adecuarnos a la sintaxis de Python para poder ingresar nuestros datos, NO podemos ingresar funciones con más de una variable, para poder elevar a una potencia determinada, colocar el coeficiente de una variable o la raíz debes de utilizar la siguiente sintaxis:</p>
-    <img src="Imagenes/sintaxis.png" alt="sintaxis">
-    <p>Como se muestra en la imagen anterior no podemos agregar funciones con más de 1 variable, además si queremos agregar el coeficiente de una variable debemos de hacerlo explícitamente agregando un asterisco que indique la multiplicación, para elevar a una potencia debemos de usar dos asteriscos o el acento circunflejo (^) y para una raíz podemos utilizar la función sqrt().</p>
-    <p>Además de respetar esta sintaxis para cada método debemos agregar los parámetros necesarios, como es la función, el punto inicial o el intervalo para que pueda ser ejecutado el código.</p>
-    <p>Si nosotros necesitamos guardar los valores, al final de la ejecución, se generará un formulario con los parámetros para la ejecución del método y si damos click en guardar, se guardarán en la base de datos y en el menú “tabla de datos” podremos ver el histórico de las consultas que hacemos.</p>
+    <?php
+    require "conexion.php";
+    $user_id = $_SESSION['id'];
+    $sql = "SELECT * FROM polinomio where user_id = ".$user_id;
+    $result = mysqli_query($conn, $sql);
+    if ($result) {
+        // Salen los datos de cada fila
+        echo "<h1 class='titulo_metodo'>Tabla de datos</h1>";
+        echo "<table class='table table-dark'>";
+        echo "<thead>";
+        echo "<tr>";
+        echo '<th scope="col">ID</th>';
+        echo '<th scope="col">Polinomio</th>';
+        echo '<th scope="col">intervalo_a</th>';
+        echo '<th scope="col">intervalo_b</th>';
+        echo '<th scope="col">Raiz</th>';
+        echo '<th scope="col">Método</th>';
+        echo '<th scope="col">Fecha</th>';
+        echo '</tr>';
+        echo '</thead>';
+        echo '<tbody id="content">';
+        
+        while($tupla = $result->fetch_assoc()) {
+            echo "<tr>";
+            echo '<th scope="col">'.$tupla['user_id'].'</th>';
+            echo '<th scope="col">'.$tupla['polinomio'].'</th>';
+            echo '<th scope="col">'.$tupla['intervalo_a'].'</th>';
+            echo '<th scope="col">'.$tupla['intervalo_b'].'</th>';
+            echo '<th scope="col">'.$tupla['raiz'].'</th>';
+            echo '<th scope="col">'.$tupla['metodo'].'</th>';
+            echo '<th scope="col">'.$tupla['fecha_registro'].'</th>';
+            echo '</tr>';
+        }
+        echo '</tbody>';
+        mysqli_close($conn);
+    } else {
+        echo "<h1 class='titulo_metodo'>No hay información en la BD.</h1>";
+        mysqli_close($conn);
+    }
+    ?>
     </div>
 
     <!-- TERMINA TEXTO METODOS-->

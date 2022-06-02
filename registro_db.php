@@ -7,8 +7,8 @@
     $lastname=$$_POST['lastname'];
     $email=$_POST['email'];
     $password=$_POST['password'];
-    $sql = "INSERT INTO datos (nombre, apellido, email,pass)
-    VALUES ('$name','$lastname','$email','$password')";
+    $sql = "INSERT INTO datos (nombre, apellido, email,pass, fecha_registro)
+    VALUES ('$name','$lastname','$email','$password', NOW())";
 
     if (mysqli_query($conn, $sql)) {
         $last_id = mysqli_insert_id($conn);

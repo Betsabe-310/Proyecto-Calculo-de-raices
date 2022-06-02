@@ -1,0 +1,38 @@
+.espacio_lados{
+    margin: 0px 150px;
+    padding: 20px 20px;
+    background-color: rgba(255, 255, 255, 0.863);
+}
+
+label, #resp2{
+    color: rgb(9, 9, 9);
+}
+
+.titulo_metodo{
+    text-align: center;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    font-size: 50px;
+    margin: 0px auto;
+}
+
+img{
+    display: block;
+    margin: 0px auto;
+}
+
+p {
+    text-align: justify;
+}
+
+html, body{
+    height: 100%; 
+}
+body{
+   background-image: url("Imagenes/12.jpg");
+   background-repeat: no-repeat;
+   background-position: center center;
+   height: 1800px;
+   background-attachment: fixed;
+   background-size: cover;
+}
